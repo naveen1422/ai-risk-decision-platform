@@ -1,0 +1,12 @@
+FOCUS_LEVELS = ["CUSTOMER", "ACCOUNT", "TRANSACTION"]
+
+FREQUENCY = {
+    "REALTIME": "REALTIME",
+    "DAILY": "DAILY"
+}
+
+RISK_BUCKETS = {
+    "HIGH": 70,
+    "MEDIUM": 30,
+    "LOW": 0
+}

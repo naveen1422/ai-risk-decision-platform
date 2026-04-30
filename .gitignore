@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual env
+venv/
+.env
+
+# Logs
+*.log
+airflow/logs/
+
+# Data
+data/
+backup_untracked/
+
+# Spark
+spark-warehouse/
+*.parquet
+*.crc
+_SUCCESS
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
