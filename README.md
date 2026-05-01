@@ -3,6 +3,16 @@ Overview
 
 This project is a real-time AI-driven risk decision system designed to simulate how modern financial platforms detect and respond to risky customer behavior.
 
+## 📌 Overview
+This project builds an end-to-end data pipeline to identify risky/defaulter customers using behavioral patterns, transaction analysis, and network relationships.
+
+It provides:
+- Risk scoring (1–200 scale)
+- Behavioral insights
+- Network-based risk signals
+- AI-based explanation for decisions
+
+
 It combines data engineering, streaming, AI reasoning, and system design into a unified platform that:
 
 Processes incoming events in real time
@@ -123,4 +133,78 @@ Data → Intelligence → Decision → Action → Observability
 
 
 Built as a production-style AI system focusing on system design, scalability, and real-world applicability.
+
+## 🏗️ Architecture
+Bronze Layer → Raw Data (transactions, accounts)
+↓
+Silver Layer → Cleaned & structured data
+↓
+Gold Layer → Features + Risk scoring
+↓
+UI + AI → Insights + Explanation
+
+## 🛠️ Tech Stack
+
+- Python
+- PySpark
+- Airflow
+- Delta / Parquet
+- Streamlit (UI)
+- OpenAI (AI explanation)
+- Git + GitHub
+
+## 🛠️ Tech Stack
+
+- Python
+- PySpark
+- Airflow
+- Delta / Parquet
+- Streamlit (UI)
+- OpenAI (AI explanation)
+- Git + GitHub
+
+## 🖥️ UI Screenshots
+
+*(Add screenshots later)*
+
+Example:
+- Customer Risk Summary
+- Transaction Behavior
+- Network Analysis
+
+---
+
+## Features
+
+- Rule-based risk scoring system
+- Behavioral pattern detection
+- Network (counterparty) analysis
+- Real-time risk evaluation ready
+- Scalable pipeline (Spark + Airflow)
+- AI-based explanation layer
+
+## 🚧 Future Work
+
+- Add Machine Learning model (risk prediction)
+- Real-time streaming (Kafka)
+- Advanced graph/network analytics
+- Production deployment (AWS/GCP)
+- Role-based UI dashboard
+
+---
+
+## 📂 Project Structure
+defaulter-platform/
+├── spark_jobs/
+├── core/
+├── ai/
+├── airflow/
+├── tests/
+├── ui/
+├── requirements.txt
+
+## 👤 Author
+
+Naveen Chandra
+
 
