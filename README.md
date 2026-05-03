@@ -1,27 +1,40 @@
 AI Risk Decision Platform
-Overview
-
-This project is a real-time AI-driven risk decision system designed to simulate how modern financial platforms detect and respond to risky customer behavior.
 
 ## 📌 Overview
-This project builds an end-to-end data pipeline to identify risky/defaulter customers using behavioral patterns, transaction analysis, and network relationships.
+. This project is a real-time AI-driven risk decision system designed to simulate how modern financial platforms detect and respond to risky customer behavior.
 
+. This system reflects a real-world principle:
+  1) Data → Intelligence → Decision → Action → Observability
+  2)Built as a production-style AI system focusing on system design, scaling
+
+. This project builds an end-to-end data pipeline to identify risky/defaulter customers using behavioral patterns, transaction analysis, and network relationships.
 It provides:
 - Risk scoring (1–200 scale)
 - Behavioral insights
 - Network-based risk signals
 - AI-based explanation for decisions
 
+. It combines data engineering, streaming, AI reasoning, and system design into a unified platform that:
+1) Processes incoming events in real time
+2) Applies intelligent risk analysis
+3) Makes automated decisions
+4) Executes actions via an agent
+5) Provides live monitoring through a dashboard
 
-It combines data engineering, streaming, AI reasoning, and system design into a unified platform that:
 
-Processes incoming events in real time
-Applies intelligent risk analysis
-Makes automated decisions
-Executes actions via an agent
-Provides live monitoring through a dashboard
-🏗️ System Architecture
-Kafka Event → Consumer → AI Engine → Decision → Agent → JSON Log → Streamlit Dashboard
+## 🏗️ Architecture
+Kafka Event
+↓
+Consumer
+↓
+Bronze Layer → Raw Data (transactions, accounts)
+↓
+Silver Layer → Cleaned & structured data
+↓
+Gold Layer → Features + Risk scoring
+↓
+AI Engine→ Decision → Agent → JSON Log → Streamlit Dashboard
+
 ⚙️ Key Components
 1️⃣ Data Platform (Batch Layer)
 Bronze → Silver → Gold architecture
@@ -40,22 +53,16 @@ Risk bucket
 Risk flags
 Explanation
 4️⃣ Agent System (Action Layer)
-
 Based on decision:
-
 HIGH   → Block customer
 MEDIUM → Send alert
 LOW    → Log & monitor
-
 Includes:
-
 Action execution
 Logging
 Audit trail
 5️⃣ Real-Time Dashboard
-
 Built using Streamlit:
-
 Live Kafka event monitoring
 Decision visualization
 Risk distribution charts
@@ -67,18 +74,15 @@ Dependency installation
 Data validation tests
 Pipeline checks
 7️⃣ Environment Management
-
 Supports:
-
 dev → development
 uat → validation
 prod → production
-
 Using .env configurations:
-
 Separate logs
 Separate topics
 Controlled deployments
+
 🧰 Tech Stack
 🔹 Data Engineering
 Python
@@ -112,70 +116,29 @@ Cloud Storage (planned)
 🎯 What This Project Demonstrates
 
 This project showcases:
-
-End-to-end data platform design
-Event-driven system architecture
-AI + data engineering integration
-Decision intelligence systems
-Production-style thinking (CI/CD, environments, logging)
-Future Enhancements
-Replace rule-based logic with ML model
-Integrate LLM for advanced explanations
-Move Kafka → GCP Pub/Sub
-Store logs in BigQuery / Cloud Storage
-Add alerting system
-Scale to high-volume streaming
-Key Insight
-
-This system reflects a real-world principle:
-
-Data → Intelligence → Decision → Action → Observability
-
-
-Built as a production-style AI system focusing on system design, scalability, and real-world applicability.
-
-## 🏗️ Architecture
-Bronze Layer → Raw Data (transactions, accounts)
-↓
-Silver Layer → Cleaned & structured data
-↓
-Gold Layer → Features + Risk scoring
-↓
-UI + AI → Insights + Explanation
-
-## 🛠️ Tech Stack
-
-- Python
-- PySpark
-- Airflow
-- Delta / Parquet
-- Streamlit (UI)
-- OpenAI (AI explanation)
-- Git + GitHub
-
-## 🛠️ Tech Stack
-
-- Python
-- PySpark
-- Airflow
-- Delta / Parquet
-- Streamlit (UI)
-- OpenAI (AI explanation)
-- Git + GitHub
+1) End-to-end data platform design
+2) Event-driven system architecture
+3) AI + data engineering integration
+4) Decision intelligence systems
+5) Production-style thinking (CI/CD, environments, logging)
+6) Future Enhancements
+7) Replace rule-based logic with ML model
+8) Integrate LLM for advanced explanations
+9) Move Kafka → GCP Pub/Sub
+10) Store logs in BigQuery / Cloud Storage
+11) Add alerting system
+12)  to high-volume streaming
+13) Key Insight
+14) ability, and real-world applicability.
 
 ## 🖥️ UI Screenshots
 
-*(Add screenshots later)*
 
 Example:
 - Customer Risk Summary
 - Transaction Behavior
-- Network Analysis
-
----
-
+  
 ## Features
-
 - Rule-based risk scoring system
 - Behavioral pattern detection
 - Network (counterparty) analysis
@@ -184,14 +147,10 @@ Example:
 - AI-based explanation layer
 
 ## 🚧 Future Work
-
 - Add Machine Learning model (risk prediction)
-- Real-time streaming (Kafka)
 - Advanced graph/network analytics
 - Production deployment (AWS/GCP)
 - Role-based UI dashboard
-
----
 
 ## 📂 Project Structure
 defaulter-platform/
