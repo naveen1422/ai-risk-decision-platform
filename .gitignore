@@ -12,13 +12,15 @@ airflow/logs/
 
 # Data
 data/
-backup_untracked/
+
 
 # Spark
 spark-warehouse/
 *.parquet
 *.crc
 _SUCCESS
+spark-events/
+spark-env/
 
 # IDE
 .vscode/
@@ -27,3 +29,6 @@ _SUCCESS
 # OS
 .DS_Store
 Thumbs.db
+
+#Metastore
+metastore_db/
