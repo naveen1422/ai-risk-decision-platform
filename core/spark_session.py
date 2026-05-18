@@ -14,7 +14,7 @@ builder = (
     .config("spark.sql.warehouse.dir", WAREHOUSE_DIR)
     .config(
     "spark.jars.packages",
-    "io.delta:delta-spark_2.12:3.1.0,org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0")
+    "io.delta:delta-spark_2.12:2.4.0,org.apache.spark:spark-sql-kafka-0-10_2.12:3.4.1")
     # --- Hive Metastore (CRITICAL) ---
     .enableHiveSupport()
 
