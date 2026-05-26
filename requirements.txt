@@ -7,3 +7,4 @@ sentence-transformers
 kafka-python
 streamlit
 pyarrow
+pytest
