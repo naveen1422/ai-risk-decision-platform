@@ -9,6 +9,8 @@ venv/
 # Logs
 *.log
 airflow/logs/
+agent_log.json
+
 
 # Data
 data/
@@ -32,3 +34,10 @@ Thumbs.db
 
 #Metastore
 metastore_db/
+
+# Virtual Environment
+spark-env/
+
+# Streamlit cache
+.streamlit/
+
