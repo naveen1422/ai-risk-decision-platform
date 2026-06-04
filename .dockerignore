@@ -1,0 +1,12 @@
+spark-env/
+.git/
+.github/
+__pycache__/
+*.pyc
+data/
+airflow/
+spark_jobs/
+tests/
+metastore_db/
+spark-events/
+agent_log.json

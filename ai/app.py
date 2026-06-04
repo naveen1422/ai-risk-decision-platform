@@ -1,52 +1,137 @@
 import streamlit as st
-import json
-import time
 import pandas as pd
+import sqlite3
+from streamlit_autorefresh import st_autorefresh
 
-st.set_page_config(page_title="AI Risk Dashboard", layout="wide")
+# -----------------------------
+# PAGE CONFIG
+# -----------------------------
+st.set_page_config(
+    page_title="AI Risk Dashboard",
+    layout="wide"
+)
 
 st.title("🚀 Real-Time AI Risk Dashboard")
 
 # -----------------------------
-# AUTO REFRESH CONTROL
+# REFRESH CONTROL
 # -----------------------------
-refresh_rate = st.slider("Refresh every seconds", 1, 10, 3)
+refresh_rate = st.slider(
+    "Refresh every seconds",
+    1,
+    10,
+    3
+)
 
-placeholder = st.empty()
+# -----------------------------
+# AUTO REFRESH
+# -----------------------------
+st_autorefresh(
+    interval=refresh_rate * 1000,
+    key="riskvault_refresh"
+)
 
-while True:
-    data = []
+# -----------------------------
+# LOAD DATA FROM SQLITE
+# -----------------------------
+try:
 
-    try:
-        with open("agent_log.json", "r") as f:
-            for line in f:
-                data.append(json.loads(line))
-    except:
-        pass
+    conn = sqlite3.connect("riskvault.db")
 
-    if data:
-        df = pd.DataFrame(data[::-1])  # latest first
+    df = pd.read_sql("""
+        SELECT *
+        FROM risk_decisions
+        ORDER BY timestamp DESC
+    """, conn)
 
-        with placeholder.container():
+    conn.close()
 
-            st.subheader("📡 Live Kafka Events")
+except Exception as e:
 
-            st.dataframe(df[["timestamp", "customer_id", "decision"]])
+    st.error(f"Database Error: {e}")
 
-            st.subheader("📊 Decision Summary")
+    df = pd.DataFrame()
 
-            decision_counts = df["decision"].value_counts()
-            st.bar_chart(decision_counts)
+# -----------------------------
+# DASHBOARD
+# -----------------------------
+if not df.empty:
 
-            st.subheader("🧠 Latest Analysis")
+    st.subheader("📡 Live Kafka Events")
 
-            latest = df.iloc[0]
+    st.dataframe(
+        df[
+            [
+                "timestamp",
+                "customer_id",
+                "risk_score",
+                "risk_bucket",
+                "confidence",
+                "decision"
+            ]
+        ],
+        use_container_width=True
+    )
 
-            st.write(f"Customer: {latest['customer_id']}")
-            st.write(f"Decision: {latest['decision']}")
-            st.text(latest["explanation"])
+    # -----------------------------
+    # DECISION SUMMARY
+    # -----------------------------
+    st.subheader("📊 Decision Summary")
 
-    else:
-        st.info("Waiting for Kafka events...")
+    decision_counts = df["decision"].value_counts()
 
-    time.sleep(refresh_rate)
+    st.bar_chart(decision_counts)
+
+    # -----------------------------
+    # RISK BUCKET SUMMARY
+    # -----------------------------
+    st.subheader("⚠️ Risk Bucket Distribution")
+
+    risk_counts = df["risk_bucket"].value_counts()
+
+    st.bar_chart(risk_counts)
+
+    # -----------------------------
+    # LATEST AI EXPLANATION
+    # -----------------------------
+    st.subheader("🧠 Latest AI Analysis")
+
+    st.text_area(
+        "Explanation",
+        value=df.iloc[0]["explanation"],
+        height=350
+    )
+
+    # -----------------------------
+    # METRICS
+    # -----------------------------
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.metric(
+            "Total Decisions",
+            len(df)
+        )
+
+    with col2:
+        st.metric(
+            "Average Confidence",
+            f"{df['confidence'].mean():.1f}%"
+        )
+
+    with col3:
+        st.metric(
+            "Unique Customers",
+            df["customer_id"].nunique()
+        )
+
+else:
+
+    st.warning("No risk decisions available yet.")
+
+# -----------------------------
+# FOOTER
+# -----------------------------
+st.caption(
+    f"Dashboard auto-refreshes every {refresh_rate} seconds"
+)
