@@ -97,6 +97,25 @@ RAG architecture
 🔹 Orchestration
 Airflow
 🔹 UI
+
+### Risk Analysis Dashboard - 1
+
+![Risk Analysis 1](screenshots/risk_analysis_1.png)
+
+---
+
+### Risk Analysis Dashboard - 2
+
+![Risk Analysis 2](screenshots/risk_analysis_2.png)
+
+---
+
+### Risk Analysis Dashboard - 3
+
+![Risk Analysis 3](screenshots/risk_analysis_3.png)
+
+---
+
 Streamlit
 🔹 DevOps
 GitHub Actions (CI/CD)
